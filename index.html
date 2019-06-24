@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Brian 3d</title>
+    <title>Brian 3D</title>
     <style>
       body {
         margin: 0;
@@ -44,12 +44,15 @@
   var scene = modelPlayer.prepareScene(viewerElement)
 
    viewerElement.addEventListener('loading', function (event) {
-       nameElement.innerHTML = 'Loading...'
+       loadingElement.innerHTML = 'Loading...'
        var progress = Math.floor(100 * event.detail.loaded / event.detail.total)
        loadingElement.innerHTML = progress + '%'
+       if (progress === 100){
+           loadingElement.innerHTML = '';
+       }
    })
 
-  modelPlayer.goFullScreen(viewerElement);
+  //modelPlayer.goFullScreen(viewerElement);
   modelPlayer.loadObject(scene, './assets/brian.obj', './assets/brian.mtl' , function () {
   })
   </script>
