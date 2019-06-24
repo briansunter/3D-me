@@ -1,0 +1,10 @@
+# File exported by Pixologic 3D Print Exporter for ZBrush
+# http://www.pixologic.com
+
+newmtl mat0
+Kd 1.0 1.0 1.0
+Ks 1.0 1.0 1.0
+Ns 100
+d 1.0
+illum 2
+map_Kd BrianTex1.jpg
