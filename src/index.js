@@ -28,22 +28,22 @@ const setCamera = (aspect) => {
  * Add lights to given scene (ambient and spots).
  */
 const setLights = (scene) => {
-  const ambient = new THREE.AmbientLight(0xffffff, 0.15)
-  const backLight = new THREE.DirectionalLight(0xffffff, 0.3)
+  const ambient = new THREE.AmbientLight(0xffffff, 0.1)
+  const backLight = new THREE.DirectionalLight(0xffffff, 0.1)
   const keyLight = new THREE.DirectionalLight(
     new THREE.Color('#EEEEEE'),
-    0.3
+    0.01
   )
   const fillLight = new THREE.DirectionalLight(
     new THREE.Color('#EEEEEE'),
-    0.2
+    0.01
   )
 
   keyLight.position.set(-100, 0, 100)
   fillLight.position.set(100, 0, 100)
   backLight.position.set(100, 0, -100).normalize()
 
-  const hemiLight = new THREE.HemisphereLight(0xffffff, 0xffffff, 0.6)
+  const hemiLight = new THREE.HemisphereLight(0xffffff, 0xffffff, 0.3)
   hemiLight.groundColor.setHSL(0.095, 1, 0.95)
   hemiLight.position.set(0, 100, 0)
   scene.add(hemiLight)
