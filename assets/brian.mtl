@@ -2,9 +2,9 @@
 # http://www.pixologic.com
 
 newmtl mat0
-Kd .9 .9 .9
-Ks .9 .9 .9
-Ns 10
+Kd 1.0 1.0 1.0
+Ks 1.0 1.0 1.0
+Ns 30
 d 1.0
 illum 2
 map_Kd assets/BrianTex1.jpg
