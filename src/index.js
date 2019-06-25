@@ -28,8 +28,8 @@ const setCamera = (aspect) => {
  * Add lights to given scene (ambient and spots).
  */
 const setLights = (scene) => {
-  const ambient = new THREE.AmbientLight(0xffffff, 0.1)
-  const backLight = new THREE.DirectionalLight(0xffffff, 0.1)
+  const ambient = new THREE.AmbientLight(0xffffff, 0.6)
+  const backLight = new THREE.DirectionalLight(0xffffff, 0.3)
   const keyLight = new THREE.DirectionalLight(
     new THREE.Color('#EEEEEE'),
     0.01
@@ -60,11 +60,25 @@ const setLights = (scene) => {
 /*
  * Link an orbit control to given camera and renderer.
  */
+var autorotateTimeout;
+
 const setControls = (camera, renderer) => {
   const controls = new OrbitControls(
     camera,
     renderer.domElement
   )
+  controls.addEventListener('start', function(){
+    clearTimeout(autorotateTimeout);
+    controls.autoRotate = false;
+  });
+
+  // restart autorotate after the last interaction & an idle time has passed
+  controls.addEventListener('end', function(){
+    autorotateTimeout = setTimeout(function(){
+      controls.autoRotate = true;
+    }, 1000);
+  });
+  controls.autoRotate = true
   controls.enableZoom = true
   camera.controls = controls
   return controls
@@ -87,6 +101,7 @@ const setRenderer = (width, height) => {
 const render = (element, renderer, scene, camera) => {
   element.appendChild(renderer.domElement)
   const animate = () => {
+    camera.controls.update()
     window.requestAnimationFrame(animate)
     renderer.render(scene, camera)
   }

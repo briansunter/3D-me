@@ -49967,14 +49967,14 @@ var setCamera = function setCamera(aspect) {
 
 
 var setLights = function setLights(scene) {
-  var ambient = new THREE.AmbientLight(0xffffff, 0.15);
+  var ambient = new THREE.AmbientLight(0xffffff, 0.6);
   var backLight = new THREE.DirectionalLight(0xffffff, 0.3);
-  var keyLight = new THREE.DirectionalLight(new THREE.Color('#EEEEEE'), 0.3);
-  var fillLight = new THREE.DirectionalLight(new THREE.Color('#EEEEEE'), 0.2);
+  var keyLight = new THREE.DirectionalLight(new THREE.Color('#EEEEEE'), 0.01);
+  var fillLight = new THREE.DirectionalLight(new THREE.Color('#EEEEEE'), 0.01);
   keyLight.position.set(-100, 0, 100);
   fillLight.position.set(100, 0, 100);
   backLight.position.set(100, 0, -100).normalize();
-  var hemiLight = new THREE.HemisphereLight(0xffffff, 0xffffff, 0.6);
+  var hemiLight = new THREE.HemisphereLight(0xffffff, 0xffffff, 0.3);
   hemiLight.groundColor.setHSL(0.095, 1, 0.95);
   hemiLight.position.set(0, 100, 0);
   scene.add(hemiLight);
@@ -49995,8 +49995,21 @@ var setLights = function setLights(scene) {
  */
 
 
+var autorotateTimeout;
+
 var setControls = function setControls(camera, renderer) {
   var controls = new OrbitControls(camera, renderer.domElement);
+  controls.addEventListener('start', function () {
+    clearTimeout(autorotateTimeout);
+    controls.autoRotate = false;
+  }); // restart autorotate after the last interaction & an idle time has passed
+
+  controls.addEventListener('end', function () {
+    autorotateTimeout = setTimeout(function () {
+      controls.autoRotate = true;
+    }, 1000);
+  });
+  controls.autoRotate = true;
   controls.enableZoom = true;
   camera.controls = controls;
   return controls;
@@ -50022,6 +50035,7 @@ var render = function render(element, renderer, scene, camera) {
   element.appendChild(renderer.domElement);
 
   var animate = function animate() {
+    camera.controls.update();
     window.requestAnimationFrame(animate);
     renderer.render(scene, camera);
   };
