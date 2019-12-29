@@ -45,4 +45,4 @@ describe('resetCamera', function () {
     chai.expect(scene.camera.position.y).to.eq(initialPosition.y)
     chai.expect(scene.camera.position.z).to.eq(initialPosition.z)
   })
-})
+

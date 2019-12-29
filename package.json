@@ -1,17 +1,19 @@
 {
-  "name": "js-3d-model-viewer",
-  "author": "CGWire <contact@cg-wire.com> (http://cg-wire.com)",
-  "version": "0.1.4",
-  "description": "An easy to use viewer to display 3D models in the browser.",
+  "name": "3D-me",
+  "author": "Brian Sunter<brian@briansunter.com> (https://briansunter.com)",
+  "version": "0.0.1",
+  "description": "A 3D scan of my body by pocketme",
   "main": "src/index.js",
   "scripts": {
+    "start": "webpack-dev-server --mode development",
     "dev": "webpack",
     "build": "NODE_ENV=production webpack",
+    "build:pages": "npm run build; cp -R dist/ docs/",
     "test": "mocha"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cgwire/js-3d-model-viewer.git"
+    "url": "git+https://github.com/briansunter/3D-me.git"
   },
   "keywords": [
     "3d",
@@ -22,9 +24,9 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/cgwire/js-3d-model-viewer/issues"
+    "url": "https://github.com/briansunter/3D-me/issues"
   },
-  "homepage": "https://github.com/cgwire/js-3d-model-viewer#readme",
+  "homepage": "https://github.com/briansunter/3D-me#readme",
   "dependencies": {
     "three": "0.94.0",
     "three-obj-mtl-loader": "1.0.3",
@@ -35,6 +37,7 @@
     "@babel/preset-env": "7.0.0-beta.54",
     "babel-loader": "8.0.0-beta.4",
     "chai": "4.1.2",
+    "copy-webpack-plugin": "^5.1.1",
     "eslint": "5.2.0",
     "eslint-config-standard": "11.0.0",
     "eslint-loader": "2.1.0",

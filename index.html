@@ -36,9 +36,10 @@
     </div>
   </div>
 
-  <script src="./dist/js-3d-model-viewer.min.js"></script>
+  <script src="./3D-me.min.js"></script>
+  <script src="./3D-me.js"></script>
   <script>
-  var modelPlayer = this['js-3d-model-viewer']
+  var modelPlayer = this['3D-me']
   var loadingElement = document.getElementById('loading')
   var viewerElement = document.getElementById('viewer')
   var scene = modelPlayer.prepareScene(viewerElement)
@@ -53,7 +54,7 @@
    })
 
   //modelPlayer.goFullScreen(viewerElement);
-  modelPlayer.loadObject(scene, './assets/brian.obj', './assets/brian.mtl' , function () {
+  modelPlayer.loadObject(scene, 'assets/brian.obj', 'assets/brian.mtl' , function () {
   })
   </script>
 </body>
