@@ -3,6 +3,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const pkg = require('./package.json');
+const CopyPlugin = require('copy-webpack-plugin');
 
 let libraryName = pkg.name;
 
@@ -27,6 +28,13 @@ const config = {
     libraryTarget: 'umd',
     umdNamedDefine: true
   },
+  plugins: [
+    new CopyPlugin([
+      { from: 'index.html', to: (__dirname + '/dist/index.html') },
+      { from: 'assets', to: (__dirname + '/dist/assets') }
+
+    ])
+  ],
   module: {
     rules: [
       {
@@ -44,6 +52,11 @@ const config = {
   resolve: {
     modules: [path.resolve('./node_modules'), path.resolve('./src')],
     extensions: ['.json', '.js']
+  },
+  devServer: {
+    contentBase: path.join(__dirname, 'dist'),
+    compress: true,
+    port: 9000
   }
 };
 

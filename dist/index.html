@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Brian 3D</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background: white;
+        font-family: Geneva, sans-serif;
+      }
+      p {
+        margin: 0;
+        padding: 0;
+      }
+      a {
+        color: #3CB371;
+      }
+      #viewer {
+        width: 100%;
+        height: 100vh;
+        margin: auto;
+        background: #000000;
+      }
+      canvas {
+        display: block;
+      }
+  </style>
+  </head>
+
+  <body>
+      <div id="loading" /> </div>
+  <div class="content">
+      <div id="viewer"></div>
+    </div>
+  </div>
+
+  <script src="./3D-me.min.js"></script>
+  <script src="./3D-me.js"></script>
+  <script>
+  var modelPlayer = this['3D-me']
+  var loadingElement = document.getElementById('loading')
+  var viewerElement = document.getElementById('viewer')
+  var scene = modelPlayer.prepareScene(viewerElement)
+
+   viewerElement.addEventListener('loading', function (event) {
+       loadingElement.innerHTML = 'Loading...'
+       var progress = Math.floor(100 * event.detail.loaded / event.detail.total)
+       loadingElement.innerHTML = progress + '%'
+       if (progress === 100){
+           loadingElement.innerHTML = '';
+       }
+   })
+
+  //modelPlayer.goFullScreen(viewerElement);
+  modelPlayer.loadObject(scene, 'assets/brian.obj', 'assets/brian.mtl' , function () {
+  })
+  </script>
+</body>
+</html>
