@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/briansunter/3D-me#readme",
   "dependencies": {
-    "three": "0.94.0",
+    "three": "0.137.0",
     "three-obj-mtl-loader": "1.0.3",
     "three-orbit-controls": "82.1.0"
   },
